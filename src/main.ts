@@ -9,7 +9,7 @@ async function bootstrap() {
   app.setGlobalPrefix(globalPrefix)
   app.useGlobalPipes(new ValidationPipe({ whitelist: true }))
 
-  const options = new DocumentBuilder().setTitle('Social Media API').build()
+  const options = new DocumentBuilder().setTitle('Reach Out').build()
   const document = SwaggerModule.createDocument(app, options)
   SwaggerModule.setup('/api', app, document)
 
