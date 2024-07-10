@@ -5,5 +5,5 @@ export class AddCommentDto {
   readonly name!: string;
 
   @IsString()
-  readonly content!: string;
+  readonly commentText!: string;
 }

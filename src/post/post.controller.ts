@@ -32,4 +32,9 @@ export class PostsController {
   async addComment(@Param('id') id: string, @Body() addCommentDto: AddCommentDto): Promise<PostEntity> {
     return this.postsService.addComment(id, addCommentDto);
   }
+
+  @Post(':id/like')
+  async addLike(@Param('id') id: string): Promise<PostEntity> {
+    return this.postsService.addLike(id);
+  }
 }

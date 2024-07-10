@@ -20,8 +20,8 @@ export class PostsService {
     const user = await this.userService.findByEmail(email);
 
     const createdPost = new this.postModel({
-      name: user.username,
-      profilePhoto: user.image,
+      profileName: user.username,
+      profileImage: user.image,
       postContent,
     });
     return createdPost.save();
@@ -47,9 +47,15 @@ export class PostsService {
     return deletedPost;
   }
 
+  async addLike(id: string): Promise<PostDocument> {
+    const post = await this.findOne(id);
+    post.likeCount += 1;
+    return post.save();
+  }
+
   async addComment(id: string, addCommentDto: AddCommentDto): Promise<PostDocument> {
     const post = await this.findOne(id);
-    post.comments.push({ ...addCommentDto, postedAt: new Date() });
+    post.comments.push({ ...addCommentDto, timeCommented: new Date() });
     return post.save();
   }
 }

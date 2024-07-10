@@ -7,3 +7,4 @@ export class CreatePostDto {
   @IsString()
   readonly postContent!: string;
 }
+
