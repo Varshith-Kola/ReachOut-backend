@@ -24,6 +24,7 @@ export class PostsService {
       profileImage: user.image,
       postContent,
     });
+  
     return createdPost.save();
   }
 

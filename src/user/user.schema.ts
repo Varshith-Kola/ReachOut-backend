@@ -16,6 +16,9 @@ export class User {
 
   @Prop()
   bio?: string;
+
+  @Prop({ type: [{ id: String }] })  // Array of liked posts
+  likedPosts!: Array<{ id: string }>;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
