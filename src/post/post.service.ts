@@ -35,7 +35,6 @@ export class PostsService {
 
   async findByUser(email: string): Promise<PostDocument[]> {
     const posts = await this.postModel.find({"email" : email}).exec();
-    console.log(email,posts)
     if (!posts) {
       throw new NotFoundException('Posts not found');
     }
