@@ -18,6 +18,11 @@ export class PostsController {
     return this.postsService.findAll();
   }
 
+  @Get(':email')
+  async findPostsByUser(@Param('email') email: string): Promise<PostEntity[]> {
+    return this.postsService.findByUser(email);
+  }
+
   @Get(':id')
   async findOne(@Param('id') id: string): Promise<PostEntity> {
     return this.postsService.findOne(id);

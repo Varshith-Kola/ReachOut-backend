@@ -5,6 +5,10 @@ export type PostDocument = Post & Document;
 
 @Schema()
 export class Post {
+
+  @Prop({ required: true })
+  email!: string;
+
   @Prop({ required: true })
   profileName!: string;
 
@@ -21,7 +25,7 @@ export class Post {
   likeCount!: number;
   
   @Prop({ type: [{ name: String, content: String, postedAt: Date }], default: [] })
-  comments!: Array<{ name: string, commentText: string, timeCommented: Date }>;
+  comments!: Array<{ name: string, commentText: string, timeCommented: Date, email: string }>;
 }
 
 export const PostSchema = SchemaFactory.createForClass(Post);

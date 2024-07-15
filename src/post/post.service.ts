@@ -20,6 +20,7 @@ export class PostsService {
     const user = await this.userService.findByEmail(email);
 
     const createdPost = new this.postModel({
+      email: email,
       profileName: user.username,
       profileImage: user.image,
       postContent,
@@ -30,6 +31,15 @@ export class PostsService {
 
   async findAll(): Promise<PostDocument[]> {
     return this.postModel.find().exec();
+  }
+
+  async findByUser(email: string): Promise<PostDocument[]> {
+    const posts = await this.postModel.find({"email" : email}).exec();
+    console.log(email,posts)
+    if (!posts) {
+      throw new NotFoundException('Posts not found');
+    }
+    return posts;
   }
 
   async findOne(id: string): Promise<PostDocument> {
