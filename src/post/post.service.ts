@@ -57,9 +57,12 @@ export class PostsService {
     return deletedPost;
   }
 
-  async addLike(id: string): Promise<PostDocument> {
+  async addLike(id: string, email: string): Promise<PostDocument> {
     const post = await this.findOne(id);
     post.likeCount += 1;
+    // Add to Liked Posts of the User
+    const user = await this.userService.findByEmail(email);
+    user.likedPosts.push({id});
     return post.save();
   }
 
