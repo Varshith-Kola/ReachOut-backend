@@ -24,8 +24,8 @@ export class Post {
   @Prop({ default: 0 })
   likeCount!: number;
   
-  @Prop({ type: [{ name: String, content: String, postedAt: Date }], default: [] })
-  comments!: Array<{ name: string, commentText: string, timeCommented: Date, email: string }>;
+  @Prop({ type: [{ name: String, commentText: String, email: String, timeCommented: Date, image: String }], default: [] })
+  comments!: Array<{ name: string, commentText: string, email: string, timeCommented: Date, image: string | undefined }>;
 }
 
 export const PostSchema = SchemaFactory.createForClass(Post);

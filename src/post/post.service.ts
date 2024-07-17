@@ -68,7 +68,8 @@ export class PostsService {
 
   async addComment(id: string, addCommentDto: AddCommentDto): Promise<PostDocument> {
     const post = await this.findOne(id);
-    post.comments.push({ ...addCommentDto, timeCommented: new Date() });
+    const user = await this.userService.findByEmail(addCommentDto.email);
+    post.comments.push({name: user.username, commentText: addCommentDto.commentText, email: addCommentDto.email, timeCommented: new Date(), image: user.image  });
     return post.save();
   }
 }
